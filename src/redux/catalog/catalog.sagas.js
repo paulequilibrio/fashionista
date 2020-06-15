@@ -12,7 +12,8 @@ export function * fetchCatalogAsync () {
     if (!response.ok) {
       throw Error(`${response.status} - ${response.statusText}`)
     }
-    const catalog = yield response.json()
+    const json = yield response.json()
+    const catalog = json.filter(item => !!item.name)
     yield put(fetchCatalogSuccess(catalog))
   } catch (error) {
     yield put(fetchCatalogFailure(error))

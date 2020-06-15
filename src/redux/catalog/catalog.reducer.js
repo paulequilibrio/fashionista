@@ -1,7 +1,7 @@
 import CatalogActionTypes from './catalog.types'
 
 const INITIAL_STATE = {
-  catalog: null,
+  products: null,
   isFetching: false,
   error: null
 }
@@ -18,7 +18,7 @@ const catalogReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isFetching: false,
-        catalog: payload
+        products: payload
       }
     case CatalogActionTypes.FETCH_CATALOG_FAILURE:
       return {
