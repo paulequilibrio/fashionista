@@ -7,7 +7,7 @@ import './Topbar.css'
 
 const Topbar = () => {
   return (
-    <div className='topbar'>
+    <header className='topbar'>
       <div className='container'>
         <div className='topbar__header'>
           <a href='/'>
@@ -26,7 +26,7 @@ const Topbar = () => {
           </div>
         </div>
       </div>
-    </div>
+    </header>
   )
 }
 

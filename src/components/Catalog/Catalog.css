@@ -1,0 +1,14 @@
+.catalog {
+  display: block;
+  padding-top: 6rem;
+}
+
+.catalog__info {
+  display: inline-block;
+  margin: 1rem 0;
+}
+
+.catalog__products {
+  display: flex;
+  flex-flow: row wrap;
+}
