@@ -1,3 +1,5 @@
+@import "reset.css";
+@import "normalize.css";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100;300;400;500;700;900&display=swap');
 
 :root {
@@ -38,11 +40,6 @@ a:hover {
   text-decoration: none;
 }
 
-.hidden {
-  display: none;
-  visibility: hidden;
-}
-
 .container {
   display: block;
   margin: 0 auto;
@@ -56,4 +53,9 @@ a:hover {
   .container {
     width: 1024px;
   }
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
 }
