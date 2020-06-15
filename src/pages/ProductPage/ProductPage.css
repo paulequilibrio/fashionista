@@ -1,0 +1,31 @@
+.product {
+  padding: 1rem 0;
+}
+
+.product {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: left;
+  margin: 0 auto;
+  position: relative;
+  width: 100%;
+  padding-bottom: 6.5rem;
+}
+
+.product__image {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.product__content {
+  width: 100%;
+}
+
+@media screen and (min-width: 1279px) {
+  .product .product__content,
+  .product .product__image {
+    width: 50%;
+  }
+}

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './Product.css'
+import './CatalogItem.css'
 
 const placeholder = 'https://via.placeholder.com/470x594/FFFFFF/?text=Imagem+indisponível++:('
 
@@ -11,7 +11,7 @@ const getURL = name =>
     .replace(/[^\w-]+/g, '')
   }`
 
-const Product = ({ data }) => {
+const CatalogItem = ({ data }) => {
   const {
     name,
     image,
@@ -21,11 +21,11 @@ const Product = ({ data }) => {
     discount_percentage: discount
   } = data
   return (
-    <div className='product'>
+    <div className='catalog-item'>
       <a href={getURL(name)}>
-        <figure className='product__image'>
+        <figure className='catalog-item__image'>
           {onSale ? (
-            <span className='product__discount'>
+            <span className='catalog-item__discount'>
               - {discount}
             </span>
           ) : ('')}
@@ -35,12 +35,12 @@ const Product = ({ data }) => {
             <img src={placeholder} alt={`Produto ${name}`} />
           )}
           <figcaption>
-            <h3 className='product__name'>{name}</h3>
-            <div className='product__pricing'>
+            <h3 className='catalog-item__name'>{name}</h3>
+            <div className='catalog-item__pricing'>
               {onSale ? (
-                <span className='product__price--from'>{regularPrice}</span>
+                <span className='catalog-item__price--from'>{regularPrice}</span>
               ) : ('')}
-              <span className='product__price'>{actualPrice}</span>
+              <span className='catalog-item__price'>{actualPrice}</span>
             </div>
           </figcaption>
         </figure>
@@ -49,4 +49,4 @@ const Product = ({ data }) => {
   )
 }
 
-export default Product
+export default CatalogItem

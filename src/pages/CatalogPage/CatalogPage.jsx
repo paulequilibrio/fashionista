@@ -1,12 +1,12 @@
 import React from 'react'
 
-import Product from '../Product/Product'
+import CatalogItem from '../../components/CatalogItem/CatalogItem'
 
-import products from './Catalog.products'
+import products from './CatalogPage.products'
 
-import './Catalog.css'
+import './CatalogPage.css'
 
-const Catalog = () => {
+const CatalogPage = () => {
   return (
     <section className='catalog'>
       <div className='container'>
@@ -15,7 +15,7 @@ const Catalog = () => {
           {
             products
               .map(product => (
-                <Product key={product.image} data={product} />
+                <CatalogItem key={product.image} data={product} />
               ))
           }
         </div>
@@ -24,4 +24,4 @@ const Catalog = () => {
   )
 }
 
-export default Catalog
+export default CatalogPage
