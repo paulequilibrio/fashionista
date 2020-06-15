@@ -15,3 +15,14 @@ export const slugfy = product => {
   }
   return ''
 }
+
+export const getId = (product, size) => {
+  return `${slugfy(product)}:${size.sku}`
+}
+
+export const createBagProduct = (product, size) => {
+  const bagProduct = Object.assign({}, product)
+  delete bagProduct.sizes
+  const id = getId(bagProduct, size)
+  return { ...bagProduct, id, size }
+}
