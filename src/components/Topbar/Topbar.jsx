@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { FiSearch, FiShoppingBag } from 'react-icons/fi'
 
 import { ReactComponent as Logo } from '../../assets/logo.svg'
@@ -10,9 +11,9 @@ const Topbar = () => {
     <header className='topbar'>
       <div className='container'>
         <div className='topbar__header'>
-          <a href='/'>
+          <Link to='/'>
             <Logo className='topbar__logo' />
-          </a>
+          </Link>
           <div className='topbar__icons'>
             <button className='topbar__icon'>
               <FiSearch />

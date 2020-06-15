@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import './CatalogItem.css'
 
@@ -22,7 +23,7 @@ const CatalogItem = ({ data }) => {
   } = data
   return (
     <div className='catalog-item'>
-      <a href={getURL(name)}>
+      <Link to={getURL(name)}>
         <figure className='catalog-item__image'>
           {onSale ? (
             <span className='catalog-item__discount'>
@@ -44,7 +45,7 @@ const CatalogItem = ({ data }) => {
             </div>
           </figcaption>
         </figure>
-      </a>
+      </Link>
     </div>
   )
 }
