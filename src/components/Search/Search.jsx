@@ -2,17 +2,20 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import uuid from 'uuid/v1'
+import { debounce } from 'lodash'
 
 import BagItem from '../../components/Product/BagItem'
 import { slugfy } from '../../utils'
 import './Search.css'
 import { closeDrawer } from '../../redux/drawer/drawer.actions'
 
-const searchProducts = (products, event) => {
-  const input = event.currentTarget.value
-  return products.filter(product =>
-    product.name.toLowerCase().includes(input.toLowerCase())
-  )
+const searchProducts = (products, input) => {
+  if (input) {
+    return products.filter(product =>
+      product.name.toLowerCase().includes(input.toLowerCase())
+    )
+  }
+  return []
 }
 
 const Search = () => {
@@ -20,22 +23,24 @@ const Search = () => {
   const products = useSelector(state => state.catalog.products)
   const [found, setFound] = useState([])
 
+  const filter = debounce(value => setFound(searchProducts(products, value)), 300)
+
   return (
     <div className='search'>
       <div className='search__form'>
         <input
           className='search__input'
           type='text'
-          placeholder='Buscar por produto...'
-          onChange={event => setFound(searchProducts(products, event))}
+          placeholder='Digite o nome de um produto...'
+          onChange={event => filter(event.currentTarget.value)}
         />
       </div>
 
       {found.length > 0 && (
         <div className='header__title'>
           {found.length === 1
-            ? `${found.length} item encontrado`
-            : `${found.length} items encontrados`}
+            ? `${found.length} produto encontrado`
+            : `${found.length} produtos encontrados`}
         </div>
       )}
 
@@ -51,7 +56,7 @@ const Search = () => {
             </Link>
           ))
         ) : (
-          <span className='bag__empty'>Nenhum item encontrado :\</span>
+          <span className='bag__empty'>Nenhum produto encontrado :\</span>
         )}
       </div>
     </div>
