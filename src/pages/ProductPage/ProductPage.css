@@ -8,6 +8,7 @@
 
 .product__page {
   display: flex;
+  flex-flow: row wrap;
 }
 
 .product .product__image,
