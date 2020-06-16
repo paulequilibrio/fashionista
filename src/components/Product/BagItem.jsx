@@ -31,9 +31,11 @@ const BagItem = ({ item }) => {
 
         <div className='product__list__info'>
           <p className='product__list__name'>{item.name}</p>
-          <p className='product__list__size'>
-            <span>{`Tam.: ${item.size.size}`}</span>
-          </p>
+          {item.size && (
+            <p className='product__list__size'>
+              <span>{`Tam.: ${item.size.size}`}</span>
+            </p>
+          )}
 
           {item.quantity && (
             <div className='product__list__quantity'>
@@ -44,9 +46,7 @@ const BagItem = ({ item }) => {
               <div className='product__list__input'>{item.quantity}</div>
               <PlusButton
                 className='bag__icons'
-                onClick={event =>
-                  dispatch(addToBag(createBagProduct(item, item.size)))
-                }
+                onClick={event => dispatch(addToBag(createBagProduct(item, item.size)))}
               />
             </div>
           )}
@@ -54,7 +54,9 @@ const BagItem = ({ item }) => {
 
         <div className='product__list__pricing'>
           <div className='product__list__current'>{item.actual_price}</div>
-          <div className='product__list__subtotal'>R$ {subtotal(item)}</div>
+          {item.quantity && (
+            <div className='product__list__subtotal'>R$ {subtotal(item)}</div>
+          )}
         </div>
       </div>
 
