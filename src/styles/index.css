@@ -30,6 +30,7 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-y: hidden;
 }
 
 a,
@@ -40,6 +41,36 @@ a:hover {
   text-decoration: none;
 }
 
+.app {
+  min-height: 100vh;
+  position: relative;
+  width: 100%;
+  padding-top: 5.5rem;
+  overflow-y: auto;
+}
+
+.app--is-drawer-visible {
+  overflow-y: hidden;
+  transition: opacity 225ms;
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+}
+
+.app--is-drawer-visible:before {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  background: radial-gradient(circle at center,#7a7a7a 0,#000 100%);
+  bottom: 0;
+  content: "";
+  height: 100vh;
+  opacity: .75;
+  pointer-events: all;
+  position: fixed;
+  right: 0;
+  visibility: visible;
+  width: 100vw;
+  z-index: 7;
+}
+
 .container {
   display: block;
   margin: 0 auto;
@@ -48,13 +79,25 @@ a:hover {
   width: 100%;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 800px) {
   .container {
-    width: 1024px;
+    width: 800px;
   }
 }
 
-.hidden {
-  display: none;
-  visibility: hidden;
+.button {
+  display: flex;
+  align-self: center;
+  -webkit-tap-highlight-color: transparent;
+  background: transparent;
+  border-radius: 100%;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+  font-size: 2rem;
+  line-height: 0;
+  outline: none;
+  padding: 0;
+  position: relative;
+  margin-left: 1.5rem;
 }

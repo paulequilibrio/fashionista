@@ -1,20 +1,3 @@
-.button {
-  display: flex;
-  align-self: center;
-  -webkit-tap-highlight-color: transparent;
-  background: transparent;
-  border-radius: 100%;
-  border: none;
-  box-shadow: none;
-  cursor: pointer;
-  font-size: 2rem;
-  line-height: 0;
-  outline: none;
-  padding: 0;
-  position: relative;
-  margin-left: 1.5rem;
-}
-
 .bag__value {
   overflow: hidden;
   position: absolute;

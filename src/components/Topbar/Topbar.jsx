@@ -16,7 +16,7 @@ const Topbar = () => {
           </Link>
           <div className='topbar__icons'>
             <SearchButton />
-            <BagButton value='10' />
+            <BagButton />
           </div>
         </div>
       </div>

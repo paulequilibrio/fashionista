@@ -1,12 +1,12 @@
 /* eslint-disable camelcase */
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import uuidv1 from 'uuid/v1'
+import uuid from 'uuid/v1'
 
 import { Button } from '../Buttons/Buttons'
 import { addToBag } from '../../redux/bag/bag.actions'
 
-import { createBagProduct } from '../../utils'
+import { createBagProduct } from '../../redux/bag/bag.utils'
 
 const ProductInfo = ({ product }) => {
   const dispatch = useDispatch()
@@ -56,7 +56,7 @@ const ProductInfo = ({ product }) => {
                     setSelectedSize(size)
                     setShowWarning(false)
                   }}
-                  key={uuidv1()}
+                  key={uuid()}
                   className={`product__filter ${
                     selectedSize.sku === size.sku ? 'product__filter--selected' : ''
                   }`}

@@ -1,5 +1,9 @@
 .catalog {
+  padding-top: 1rem;
+  padding-bottom: 5.5rem;
   display: block;
+  height: calc(100vh - 6.5rem);
+  overflow-y: scroll;
 }
 
 .catalog__info {

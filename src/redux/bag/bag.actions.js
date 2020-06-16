@@ -5,9 +5,14 @@ export const addToBag = product => ({
   payload: product
 })
 
-export const removeFromBag = productSlug => ({
+export const removeFromBag = productId => ({
   type: BagActionTypes.REMOVE_FROM_BAG,
-  payload: productSlug
+  payload: productId
+})
+
+export const clearItemFromBag = productId => ({
+  type: BagActionTypes.CLEAR_ITEM_FROM_BAG,
+  payload: productId
 })
 
 export const emptyBag = () => ({

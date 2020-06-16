@@ -1,12 +1,21 @@
-const checkItemSlugInBag = (bagItems, itemId) =>
+import { getId } from '../../utils'
+
+export const createBagProduct = (product, size) => {
+  const bagProduct = Object.assign({}, product)
+  delete bagProduct.sizes
+  const id = getId(bagProduct, size)
+  return { ...bagProduct, id, size }
+}
+
+const itemInBag = (bagItems, itemId) =>
   bagItems.find(bagItem => bagItem.id === itemId)
 
-export const clearItemFromBag = (bagItems, itemToClear) => {
-  return bagItems.filter(bagItem => bagItem.id !== itemToClear.id)
+export const clearItemFromBag = (bagItems, itemToClearId) => {
+  return bagItems.filter(bagItem => bagItem.id !== itemToClearId)
 }
 
 export const addItemToBag = (bagItems, itemToAdd) => {
-  const alreadyInBag = checkItemSlugInBag(bagItems, itemToAdd.id)
+  const alreadyInBag = itemInBag(bagItems, itemToAdd.id)
 
   if (alreadyInBag) {
     return bagItems.map(bagItem =>
@@ -19,14 +28,14 @@ export const addItemToBag = (bagItems, itemToAdd) => {
   }
 }
 
-export const removeItemFromBag = (bagItems, itemToRemove) => {
-  const alreadyInBag = checkItemSlugInBag(bagItems, itemToRemove.id)
+export const removeItemFromBag = (bagItems, itemToRemoveId) => {
+  const alreadyInBag = itemInBag(bagItems, itemToRemoveId)
 
-  if (alreadyInBag.quantity === 1) {
-    return clearItemFromBag(bagItems, itemToRemove)
+  if (alreadyInBag && alreadyInBag.quantity === 1) {
+    return clearItemFromBag(bagItems, itemToRemoveId)
   } else {
     return bagItems.map(bagItem =>
-      bagItem.id === itemToRemove.id
+      bagItem.id === itemToRemoveId
         ? { ...bagItem, quantity: bagItem.quantity - 1 }
         : bagItem
     )
@@ -36,16 +45,15 @@ export const removeItemFromBag = (bagItems, itemToRemove) => {
 export const totalItems = bagItems =>
   bagItems.reduce((total, item) => total + item.quantity, 0)
 
-export const sumItemsPrice = items => {
-  const totalPrice = items
-    .reduce((acc, item) => {
-      const priceWithoutCurrency = item.actual_price
-        .replace('R$ ', '')
-        .replace(',', '.')
-      const priceToFloat = parseFloat(priceWithoutCurrency)
-      return acc + priceToFloat
-    }, 0)
+export const totalItemsPrice = items => {
+  return items
+    .reduce(
+      (total, item) =>
+        total +
+        item.quantity *
+          parseFloat(item.actual_price.replace('R$ ', '').replace(',', '.')),
+      0
+    )
     .toFixed(2)
     .replace('.', ',')
-  return totalPrice
 }
